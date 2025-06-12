@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Especial Dia dos Namorados 💘</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff; /* Fundo branco */
+      color: #b30000; /* Vermelho escuro para textos */
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #cc0000; /* Vermelho vivo */
+      margin-bottom: 0.3em;
+    }
+
+    p.intro {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: #990000; /* Vermelho médio */
+    }
+
+    .quiz {
+      background-color: #fff; /* Fundo branco puro */
+      padding: 30px 20px;
+      border-radius: 20px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      border: 3px solid #cc0000; /* Borda vermelha */
+      box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3);
+    }
+
+    .pergunta {
+      margin: 25px 0;
+    }
+
+    .pergunta p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #b30000;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      margin: 7px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e60000;
+    }
+
+    #resultado {
+      margin-top: 30px;
+    }
+
+    button#mostrarMensagemBtn {
+      background-color: #cc0000;
+      padding: 14px 30px;
+      font-size: 1.2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(204, 0, 0, 0.6);
+    }
+    button#mostrarMensagemBtn:hover {
+      background-color: #a30000;
+    }
+
+    #mensagem {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 25px;
+      color: #800000;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 30px auto 0;
+      line-height: 1.6;
+      border: 3px solid #cc0000;
+      box-shadow: 0 4px 15px rgba(204, 0, 0, 0.3);
+    }
+
+    /* Galeria de fotos */
+    .photo-gallery {
+      max-width: 700px;
+      margin: 40px auto 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .photo-gallery img {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 15px;
+      border: 5px solid #cc0000;
+      box-shadow: 0 6px 15px rgba(204, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .photo-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.7);
+    }
+
+    /* Corações flutuantes */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #cc0000;
+      transform: rotate(45deg);
+      animation: float 10s infinite;
+      opacity: 0.6;
+      z-index: 0;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #cc0000;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>❤️ Especial Dia dos Namorados ❤️</h1>
+  <p class="intro">
+    Vamos ver se você me conhece bem, chulé? Tente adivinhar o que eu pensei!
+  </p>
+
+  <div class="quiz">
+    <div class="pergunta" id="p1">
+      <p>1️⃣ Onde foi nosso primeiro momento marcante?</p>
+      <button onclick="responder(1, 'A')">A) No nosso primeiro encontro</button><br />
+      <button onclick="responder(1, 'B')">B) No primeiro beijo</button>
+    </div>
+
+    <div class="pergunta" id="p2" style="display:none;">
+      <p>2️⃣ O que eu mais esqueço no dia a dia?</p>
+      <button onclick="responder(2, 'A')">A) Onde deixei meu celular</button><br />
+      <button onclick="responder(2, 'B')">B) O que eu ia dizer no meio da frase</button>
+    </div>
+
+    <div class="pergunta" id="p3" style="display:none;">
+      <p>3️⃣ O que mais me faz sorrir quando estou com você?</p>
+      <button onclick="responder(3, 'A')">A) Quando você faz piadas bobas</button><br />
+      <button onclick="responder(3, 'B')">B) Quando você me olha como se eu fosse tudo</button>
+    </div>
+
+    <div id="resultado" style="display:none;">
+      <button id="mostrarMensagemBtn" onclick="mostrarMensagem()">Ver Mensagem Final 💌</button>
+    </div>
+  </div>
+
+  <!-- Galeria de fotos -->
+  <section class="photo-gallery">
+    <img src="IMG_8588.jpeg" alt="Beijo apaixonado" />
+    <img src="IMG_0694.jpeg" alt="Espelho do amor" />
+    <img src="IMG-20221012-WA0008_Original.jpeg" alt="Momentos juntos" />
+  </section>
+
+  <div id="mensagem" style="display:none;">
+    <h2>💘 Eu pensei em...</h2>
+    <p>
+      🥰 Nosso momento marcante foi no <strong>primeiro encontro</strong> (lembra né de você com vergonha?)<br />
+      💖 Eu acho que <strong>os dois estão empatados</strong> (ainda bem que tenho você pra me lembrar 😋)<br />
+      😍 E claro, que quando você me <strong>olha como se eu fosse tudo</strong>, fico até sem jeito 😍<br /><br />
+
+      Agora falando sério... você é a melhor parte do meu dia, da minha vida e do meu coração.  
+      Feliz Dia dos Namorados, meu amor! Que a gente continue rindo, brincando e se amando cada vez mais.  
+      Te amo para a eternidade 💖
+    </p>
+  </div>
+
+  <script>
+    let respostas = {};
+
+    function responder(pergunta, escolha) {
+      respostas[pergunta] = escolha;
+      document.getElementById("p" + pergunta).style.display = "none";
+      const proximo = pergunta + 1;
+      const proxPergunta = document.getElementById("p" + proximo);
+      if (proxPergunta) {
+        proxPergunta.style.display = "block";
+      } else {
+        document.getElementById("resultado").style.display = "block";
+      }
+    }
+
+    function mostrarMensagem() {
+      document.querySelector(".quiz").style.display = "none";
+      document.querySelector(".photo-gallery").style.display = "none";
+      document.getElementById("mensagem").style.display = "block";
+    }
+
+    // Criar corações flutuantes
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
